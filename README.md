@@ -1,3 +1,5 @@
 # Mariana-tek
 
-![alt text](image.png)
+![Website](image.png)
+
+![Django admin](admin.png)
