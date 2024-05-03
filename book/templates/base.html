@@ -98,46 +98,7 @@
     <br />
     <br />
 
-    <div class="container">
-      <div class="row">
-        <div class="col m5">
-          <div class="input-field col s12">
-            <select
-              multiple
-              onchange="getMovies()"
-              id="emenities"
-              onchange="getMovies()"
-            >
-              <option value="" disabled selected>Choose Your Preference</option>
-              {% for emenitie in emenities %}
-              <option value="{{emenitie.id}}">{{emenitie.name}}</option>
-              {% endfor %}
-            </select>
-            <label for="emenities"
-              ><h3 class="JT">
-                <i class="fas fa-suitcase"></i> Select Genere :
-              </h3></label
-            >
-          </div>
-        </div>
 
-        <!-- <div class="col m4 ex">
-          <label for="price"
-            ><h3 class="JT"><i class="fas fa-clock"></i> Search Movie :</h3>
-          </label>
-          <p class="range-field">
-            <input
-              type="range"
-              onchange="getMovies()"
-              id="price"
-              min="100"
-              max="10000"
-              value="10"
-            />
-          </p>
-        </div> -->
-      </div>
-    </div>
 
     <div class="container">
       <table>
@@ -154,7 +115,14 @@
         {% for movie in movies_data %}
         <tr>
           <td>{{ movie.Title }}</td>
-          <td><img src="{{ movie.Poster }}" width="45" height="45" alt="My Image" /></td>
+          <td>
+            <img
+              src="{{ movie.Poster }}"
+              width="45"
+              height="45"
+              alt="My Image"
+            />
+          </td>
           <td>{{ movie.Genres }}</td>
           <td>{{ movie.Rating }}</td>
           <td>{{ movie.YearRelease }}</td>
@@ -164,46 +132,5 @@
         {% endfor %}
       </table>
     </div>
-
-    <!-- <script>
-        var show_movies_here = document.getElementById("show_movies_here");
- 
-        $(document).ready(function(){
-            $('select').formSelect();
-        });
- 
-        function getMovies() {
-            var price = document.getElementById("price").value;
-            var instance = M.FormSelect.getInstance(document.getElementById('emenities'));
-            var emenities = '';
-            var html = '';
- 
-            if(instance){
-                emenities = instance.getSelectedValues();
-            }
- 
-            fetch(`/api/movies?emenities=${emenities}&price=${price}`)
-            .then(result => result.json())
-            .then(response => {
-                for (var i = 0; i < response.length; i++) {
-                    html += `
-                        <div class="col s12 m4">
-                            <div class="card">
-                                <div class="card-content">
-                                    <span class="gfg1">${response[i].movie_name}</span>
-                                    <p class="gfgd">${response[i].movie_description}</p>
-                                    <p class="ex23">  Price: <strong> ₹ ${response[i].price} </strong><p>
-                                     <br>
-                                    <button type="submit" class="btn">Book</button>
-                                </div>
-                            </div>
-                        </div>
-                    `;
-                }
-                show_movies_here.innerHTML = html;
-            });
-        }
-       getMovies()
-    </script> -->
   </body>
 </html>

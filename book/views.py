@@ -3,21 +3,21 @@ from .models import Emenitites, Movie
 from django.http import JsonResponse
 from django.contrib import messages
 from django.contrib.auth import logout
-# import json
+import json
 
-# with open('book\movies.json') as json_file:
-#     data = json.load(json_file)
+with open('book\movies.json') as json_file:
+    data = json.load(json_file)
 
 
-# movies_data = {}
-# for i in data:
-#     movies_data['Title'] = i['movies'][0]['title']
-#     movies_data['Poster'] = i['movies'][0]['poster']
-#     movies_data['Genres'] = i['movies'][0]['genre']
-#     movies_data['Rating'] = i['movies'][0]['imdb_rating']
-#     movies_data['Year Release'] = i['movies'][0]['year'] 
-#     movies_data['Metacritic Rating'] = i['movies'][0]['meta_score']
-#     movies_data['Runtime'] = i['movies'][0]['runtime']
+movies_data = {}
+for i in data:
+    movies_data['Title'] = i['movies'][0]['title']
+    movies_data['Poster'] = i['movies'][0]['poster']
+    movies_data['Genres'] = i['movies'][0]['genre']
+    movies_data['Rating'] = i['movies'][0]['imdb_rating']
+    movies_data['Year Release'] = i['movies'][0]['year'] 
+    movies_data['Metacritic Rating'] = i['movies'][0]['meta_score']
+    movies_data['Runtime'] = i['movies'][0]['runtime']
     
 
 def home(request): 
@@ -26,22 +26,4 @@ def home(request):
 
     return render(request, 'base.html', {'movies_data': movies_data}) 
  
-# def api_movies(request):
-#     movies_objs = Movie.objects.all()
-     
-#     price = request.GET.get('price')
-#     if price:
-#         movies_objs = movies_objs.filter(price__lte=price)
-         
-#     emenities = request.GET.get('emenities')
-#     if emenities:
-#         emenities = [int(e) for e in emenities.split(',') if e.isdigit()]
-#         movies_objs = movies_objs.filter(emenities__in=emenities).distinct()
-     
-#     payload = [{'movie_name': movie_obj.movie_name,
-#                 'movie_description': movie_obj.movie_description,
-#                 'movie_image': movie_obj.movie_image,
-#                 'price': movie_obj.price} for movie_obj in movies_objs]
-     
-#     return JsonResponse(payload, safe=False)
  
